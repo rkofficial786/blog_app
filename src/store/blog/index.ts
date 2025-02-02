@@ -8,7 +8,7 @@ import {
   getBlogsByAuthor,
 } from './actions';
 
-const initialState :any= {
+const initialState: any = {
   blogs: [],
   bloggers: [],
   isLoading: false,
@@ -72,8 +72,8 @@ export const BlogSlice = createSlice({
         state.isLoading = false;
         state.error = action.error.message || 'Failed to fetch author blogs';
         state.authorBlogs = [];
-      });
-    // Add other cases for createBlog and fetchBloggers
+      })
+      .addCase(fetchBloggers.fulfilled, (state, action) => {});
   },
 });
 

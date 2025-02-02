@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useCallback} from 'react';
 import {View, Text, FlatList, RefreshControl} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {fetchBlogs} from '../../store/blog';
@@ -18,6 +18,12 @@ const Home = () => {
   const [selectedLanguage, setSelectedLanguage] = useState('');
   const [refreshing, setRefreshing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const {blogs:allBlogs} =useSelector((state:any)=>state.blogs)
+
+
+  console.log(allBlogs,"all bl;ogs");
+  
 
   const loadBlogs = useCallback(
     async (filters: {

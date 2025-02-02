@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   View,
   Modal,
@@ -10,7 +10,6 @@ import {
   PanResponderGestureState,
   ScrollView,
 } from 'react-native';
-import {useColorScheme} from 'nativewind';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const BOTTOM_SHEET_HEIGHT = 450;
@@ -39,7 +38,6 @@ const BottomSheetModal: React.FC<BottomSheetModalProps> = ({
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const translateY = useRef(new Animated.Value(height)).current;
-  const {colorScheme: currentTheme} = useColorScheme();
   const isDragStartedFromHeader = useRef(false);
 
   const currentHeight = isExpanded ? SCREEN_HEIGHT : height;
@@ -106,7 +104,6 @@ const BottomSheetModal: React.FC<BottomSheetModalProps> = ({
   ) => {
     if (gestureState.dy > DRAG_THRESHOLD && isDragStartedFromHeader.current) {
       if (isExpanded) {
-        // Contract to default height
         setIsExpanded(false);
         Animated.spring(translateY, {
           toValue: 0,
@@ -114,14 +111,12 @@ const BottomSheetModal: React.FC<BottomSheetModalProps> = ({
           bounciness: 0,
         }).start();
       } else if (gestureState.dy > SCREEN_HEIGHT * 0.2) {
-        // Close the modal
         Animated.timing(translateY, {
           toValue: currentHeight,
           duration: 200,
           useNativeDriver: true,
         }).start(onClose);
       } else {
-        // Return to default position
         Animated.spring(translateY, {
           toValue: 0,
           useNativeDriver: true,
@@ -133,7 +128,6 @@ const BottomSheetModal: React.FC<BottomSheetModalProps> = ({
       !isExpanded &&
       allowFullscreen
     ) {
-      // Animate back to 0 first, then expand
       Animated.spring(translateY, {
         toValue: 0,
         useNativeDriver: true,
@@ -142,7 +136,6 @@ const BottomSheetModal: React.FC<BottomSheetModalProps> = ({
         setIsExpanded(true);
       });
     } else {
-      // Return to current state
       Animated.spring(translateY, {
         toValue: 0,
         useNativeDriver: true,
@@ -168,8 +161,6 @@ const BottomSheetModal: React.FC<BottomSheetModalProps> = ({
     }
   };
 
-  const isDarkTheme = currentTheme === 'dark';
-
   return (
     <Modal
       visible={isVisible}
@@ -179,30 +170,21 @@ const BottomSheetModal: React.FC<BottomSheetModalProps> = ({
       <View
         style={[
           styles.overlay,
-          {
-            backgroundColor: isDarkTheme
-              ? 'rgba(0,0,0,0.7)'
-              : 'rgba(0,0,0,0.5)',
-          },
+          { backgroundColor: 'rgba(0,0,0,0.5)' },
         ]}
         onStartShouldSetResponder={() => true}
         onResponderRelease={handleOutsidePress}>
         <View
           style={[
             styles.containerWrapper,
-            {
-              height: currentHeight,
-            },
+            { height: currentHeight },
           ]}>
           <Animated.View
             style={[
               styles.container,
               {
-                borderColor: isDarkTheme ? 'white' : 'gray',
-                transform: [{translateY}],
-                backgroundColor: isDarkTheme
-                  ? 'rgba(30, 30, 30, 0.9)'
-                  : 'rgba(255, 255, 255, 1)',
+                transform: [{ translateY }],
+                backgroundColor: 'white',
                 height: '100%',
               },
             ]}>
@@ -211,18 +193,14 @@ const BottomSheetModal: React.FC<BottomSheetModalProps> = ({
                 style={[
                   styles.dragHandle,
                   {
-                    backgroundColor: isDarkTheme
-                      ? 'rgba(255,255,255,0.3)'
-                      : 'rgba(0,0,0,0.2)',
+                    backgroundColor: 'rgba(0,0,0,0.2)',
                     borderWidth: 1,
-                    borderColor: isDarkTheme
-                      ? 'rgba(255,255,255,0.1)'
-                      : 'rgba(0,0,0,0.1)',
+                    borderColor: 'rgba(0,0,0,0.1)',
                   },
                 ]}
               />
               {title && (
-                <Text className="text-xl text-center text-light-text-primary dark:text-dark-text-primary font-semibold mb-4">
+                <Text className="text-xl text-center text-text-primary font-semibold mb-4">
                   {title}
                 </Text>
               )}
@@ -254,6 +232,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderWidth: 1,
     borderBottomWidth: 0,
+    borderColor: 'rgba(0,0,0,0.1)',
     position: 'absolute',
     bottom: 0,
     left: 0,

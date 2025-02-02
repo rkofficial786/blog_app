@@ -21,6 +21,8 @@ export interface User {
   following?: string[];
   createdAt: string;
   postCount?: number;
+  totalLikes?:number ;
+  coverImage?: string;
 }
 
 export interface BlogPost {

@@ -22,7 +22,6 @@ const FilterContent: React.FC<BlogFiltersProps> = ({
 
   return (
     <View className="p-4">
-      {/* Expertise Filter */}
       <Text className="text-text-primary font-medium mb-3">Expertise</Text>
       <View className="flex-row flex-wrap mb-6">
         {expertise.map(exp => (
@@ -40,7 +39,6 @@ const FilterContent: React.FC<BlogFiltersProps> = ({
         ))}
       </View>
 
-      {/* Language Filter */}
       <Text className="text-text-primary font-medium mb-3">Language</Text>
       <View className="flex-row flex-wrap">
         {languages.map(lang => (
@@ -62,8 +60,6 @@ const FilterContent: React.FC<BlogFiltersProps> = ({
 const BlogFilters: React.FC<BlogFiltersProps> = props => {
   const [isModalVisible, setModalVisible] = useState(false);
   const {selectedExpertise, selectedLanguage} = props;
-
-  // Count active filters
   const activeFiltersCount = [selectedExpertise, selectedLanguage].filter(
     Boolean,
   ).length;
@@ -79,7 +75,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = props => {
           color="#64748B"
         />
         {activeFiltersCount > 0 && (
-          <View className="bg-accent-primary w-5 h-5 rounded-full items-center justify-center absolute -right-1 -top-1">
+          <View className="bg-accent-primary w-5 h-5 rounded-full items-center justify-center absolute right-2 top-2">
             <Text className="text-white text-xs">{activeFiltersCount}</Text>
           </View>
         )}

@@ -8,8 +8,7 @@ import {View} from 'react-native';
 import Routes from '.';
 import {useSelector} from 'react-redux';
 import AuthorProfile from '../screens/profile';
-// import AppTour from '../screens/tour';
-// import Plans from '../screens/plans';
+import CreateBlog from '../screens/create-blogs';
 
 const RootStack = createNativeStackNavigator();
 
@@ -17,17 +16,15 @@ export const Navigation = () => {
   const {token} = useSelector((state: any) => state.user);
 
   return (
-    // <NavigationContainer>
     <RootStack.Navigator screenOptions={{headerShown: false}}>
       {token ? (
         <RootStack.Screen name="Main" component={MainTabNavigator} />
       ) : (
         <RootStack.Screen name="Auth" component={AuthStackNavigator} />
       )}
-      {/* <RootStack.Screen name="Tour" component={AppTour} /> */}
-      {/* <RootStack.Screen name="Plans" component={Plans} /> */}
+
       <RootStack.Screen name="Profile" component={AuthorProfile} />
+      <RootStack.Screen name="CreateBlogs" component={CreateBlog} />
     </RootStack.Navigator>
-    // </NavigationContainer>
   );
 };

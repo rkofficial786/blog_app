@@ -1,14 +1,11 @@
 import React, {useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {View, Animated, Dimensions} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import {useColorScheme} from 'nativewind';
-import Badge from 'react-native-vector-icons/SimpleLineIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {HomeStackNavigator} from './stacks/HomeStack';
-import {TaskStackNavigator} from './stacks/TaskStack';
 import {ProfileStackNavigator} from './stacks/ProfileStack';
-import {GoalsStackNavigator} from './stacks/GoalsStack';
-import {CommunityStackNavigator} from './stacks/CommunityStack';
+import {MapsStackNavigator} from './stacks/MapStack';
+import {ChatsStackNavigator} from './stacks/ChatsStack';
 
 const Tab = createBottomTabNavigator();
 const {width} = Dimensions.get('window');
@@ -34,7 +31,7 @@ const TabBarIndicator = ({state, descriptor, navigation, tabWidth}: any) => {
         width: tabWidth - 16,
         height: 40,
         borderRadius: 20,
-        backgroundColor: descriptor.options.indicatorBackground,
+        backgroundColor: '#E2E8F0',
         transform: [{translateX}],
       }}
     />
@@ -42,23 +39,21 @@ const TabBarIndicator = ({state, descriptor, navigation, tabWidth}: any) => {
 };
 
 export const MainTabNavigator = () => {
-  const {colorScheme} = useColorScheme();
-  const isDark = colorScheme === 'dark';
-  const tabWidth = width / 3; // 3 tabs
+  const tabWidth = width / 4; // 4 tabs
 
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
         tabBarStyle: {
-          backgroundColor: isDark ? '#111827' : '#ffffff',
+          backgroundColor: '#ffffff',
           borderTopWidth: 0,
           elevation: 0,
           shadowOpacity: 0,
           height: 60,
           position: 'relative',
         },
-        tabBarActiveTintColor: isDark ? '#ffffff' : '#000000',
-        tabBarInactiveTintColor: isDark ? '#6b7280' : '#9ca3af',
+        tabBarActiveTintColor: '#3B82F6',
+        tabBarInactiveTintColor: '#94A3B8',
         headerShown: false,
         tabBarShowLabel: true,
         tabBarLabelStyle: {
@@ -66,7 +61,6 @@ export const MainTabNavigator = () => {
           fontWeight: '600',
           marginTop: 4,
         },
-        indicatorBackground: isDark ? '#3b82f6' : '#dbeafe',
         tabBarButton: props => {
           const {onPress, children} = props;
           return (
@@ -98,16 +92,16 @@ export const MainTabNavigator = () => {
                   },
                 ],
               }}>
-              <Icon name="home" color={color} size={size} />
+              <MaterialCommunityIcons name="home" color={color} size={24} />
             </Animated.View>
           ),
         }}
       />
       <Tab.Screen
-        name="TasksStack"
-        component={TaskStackNavigator}
+        name="MapsStack"
+        component={MapsStackNavigator}
         options={{
-          tabBarLabel: 'Tasks',
+          tabBarLabel: 'Maps',
           tabBarIcon: ({color, size, focused}) => (
             <Animated.View
               style={{
@@ -117,16 +111,20 @@ export const MainTabNavigator = () => {
                   },
                 ],
               }}>
-              <Icon name="list" color={color} size={size} />
+              <MaterialCommunityIcons
+                name="map-marker"
+                color={color}
+                size={24}
+              />
             </Animated.View>
           ),
         }}
       />
       <Tab.Screen
-        name="GoalsStack"
-        component={GoalsStackNavigator}
+        name="ChatsStack"
+        component={ChatsStackNavigator}
         options={{
-          tabBarLabel: 'Goals',
+          tabBarLabel: 'Chats',
           tabBarIcon: ({color, size, focused}) => (
             <Animated.View
               style={{
@@ -136,26 +134,7 @@ export const MainTabNavigator = () => {
                   },
                 ],
               }}>
-              <Badge name="badge" color={color} size={size} />
-            </Animated.View>
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="CommunityStack"
-        component={CommunityStackNavigator}
-        options={{
-          tabBarLabel: 'Community',
-          tabBarIcon: ({color, size, focused}) => (
-            <Animated.View
-              style={{
-                transform: [
-                  {
-                    scale: focused ? 1.2 : 1,
-                  },
-                ],
-              }}>
-              <Icon name="people" color={color} size={size} />
+              <MaterialCommunityIcons name="chat" color={color} size={24} />
             </Animated.View>
           ),
         }}
@@ -174,7 +153,7 @@ export const MainTabNavigator = () => {
                   },
                 ],
               }}>
-              <Icon name="person" color={color} size={size} />
+              <MaterialCommunityIcons name="account" color={color} size={24} />
             </Animated.View>
           ),
         }}

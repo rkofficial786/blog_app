@@ -6,12 +6,11 @@ import Home from '../../screens/home';
 
 const Stack = createNativeStackNavigator();
 
-export const GoalsStackNavigator = () => {
+export const MapsStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="TaskList" component={Home} />
-      {/* <Stack.Screen name="Goals" component={GoalsScreen} /> */}
-      {/* <Stack.Screen name="CreateGoal" component={CreateGoal} /> */}
+      
     </Stack.Navigator>
   );
 };

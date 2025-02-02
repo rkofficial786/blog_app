@@ -31,7 +31,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
     <View className="bg-background-secondary">
       {/* Cover Image with Navigation Actions */}
       <ImageBackground
-        source={{uri: user.profileImage || '/api/placeholder/400/150'}}
+        source={{uri: user.coverImage || '/api/placeholder/400/150'}}
         className="h-32 justify-between p-4"
         resizeMode="cover">
         <View className="absolute inset-0 bg-black/30" />
@@ -117,7 +117,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
         {/* Expertise */}
         {user.expertise && user.expertise.length > 0 && (
           <View className="mt-3">
-            <Text className="text-text-secondary text-xs mb-2">Expertise</Text>
+            <Text className="text-text-secondary text-xs font-semibold mb-2">Expertise</Text>
             <View className="flex-row flex-wrap gap-1">
               {user.expertise.map((exp, index) => (
                 <View

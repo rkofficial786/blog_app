@@ -3,6 +3,7 @@ import {TouchableOpacity, View, Text, Pressable} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Avatar from '../../components/avatar';
 import {User} from '../../types/blogs';
+import {useSelector} from 'react-redux';
 
 interface AuthorCardProps {
   author: User;
@@ -15,6 +16,7 @@ const AuthorCard: React.FC<AuthorCardProps> = ({
   onProfilePress,
   onFollowPress,
 }) => {
+  const {currentUser} = useSelector((state: any) => state.user);
   const formatCount = (count: number) => {
     if (count >= 1000000) return `${(count / 1000000).toFixed(1)}M`;
     if (count >= 1000) return `${(count / 1000).toFixed(1)}K`;
@@ -53,13 +55,15 @@ const AuthorCard: React.FC<AuthorCardProps> = ({
         </View>
 
         {/* Follow Button */}
-        <Pressable
-          onPress={onFollowPress}
-          className="px-3 py-1.5 rounded-full border border-accent-primary">
-          <Text className="text-accent-primary text-xs font-medium">
-            Follow
-          </Text>
-        </Pressable>
+        {currentUser.id !== author.id && (
+          <Pressable
+            onPress={onFollowPress}
+            className="px-3 py-1.5 rounded-full border border-accent-primary">
+            <Text className="text-accent-primary text-xs font-medium">
+              Follow
+            </Text>
+          </Pressable>
+        )}
       </View>
 
       {/* Expertise Tags */}

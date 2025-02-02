@@ -10,8 +10,6 @@ import {
 import {useRoute, useNavigation} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {getBlogsByAuthor} from '../../store/blog';
-
-import BottomSheetModal from '../../components/BottomSheet';
 import {BlogWithAuthor} from '../../types/blogs';
 import ProfileHeader from './header';
 import BlogCard from './blog-card';
@@ -30,7 +28,7 @@ const AuthorProfile = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
-  const [showOptionsModal, setShowOptionsModal] = useState(false);
+
 
   const isOwnProfile = currentUser?.id === authorId;
   const author = authorBlogs[0]?.author;
@@ -72,11 +70,7 @@ const AuthorProfile = () => {
     }
 
     try {
-      // TODO: Implement follow/unfollow API call
       setIsFollowing(prev => !prev);
-      // You would typically make an API call here
-      // const action = isFollowing ? unfollowUser : followUser;
-      // await dispatch(action(authorId)).unwrap();
     } catch (error) {
       Alert.alert('Error', 'Failed to update follow status');
     }
@@ -89,7 +83,7 @@ const AuthorProfile = () => {
   }, [currentUser]);
 
   const handleCreateBlog = useCallback(() => {
-    navigation.navigate('CreateBlog');
+    navigation.navigate('CreateBlogs');
   }, []);
 
   const handleBlogPress = useCallback((blogId: string) => {
@@ -155,14 +149,6 @@ const AuthorProfile = () => {
           </View>
         }
       />
-
-      {/* Options Modal (if needed) */}
-      <BottomSheetModal
-        isVisible={showOptionsModal}
-        onClose={() => setShowOptionsModal(false)}
-        title="Options">
-        <View className="p-4">{/* Add options here */}</View>
-      </BottomSheetModal>
     </View>
   );
 };

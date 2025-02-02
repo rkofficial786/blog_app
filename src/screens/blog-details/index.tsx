@@ -8,6 +8,7 @@ import BlogImages from './blog-images';
 import BlogTags from './blog-tags';
 import AuthorCard from './author-card';
 import BlogEngagement from './engagement';
+import {HTMLContent} from '../../components/render-html';
 
 const BlogDetail = () => {
   const route = useRoute<any>();
@@ -48,7 +49,6 @@ const BlogDetail = () => {
 
   const handleLike = () => {
     setIsLiked(!isLiked);
-    // Add like API call here
   };
 
   const handleAuthorPress = () => {
@@ -85,9 +85,9 @@ const BlogDetail = () => {
 
         <AuthorCard author={blog.author} onProfilePress={handleAuthorPress} />
 
-        <Text className="text-text-primary leading-6 mb-6 ">
-          {blog.content}
-        </Text>
+        <View className="mb-3">
+          <HTMLContent content={blog.content} />
+        </View>
 
         <BlogImages images={blog.images} />
 

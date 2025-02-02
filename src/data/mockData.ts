@@ -5,6 +5,7 @@ export const mockUsers: User[] = [
     id: 'user1',
     name: 'Rahul Kumar',
     email: 'rahul@example.com',
+    coverImage: 'https://picsum.photos/800/600',
     role: 'blogger',
     profileImage: 'https://randomuser.me/api/portraits/men/32.jpg',
     bio: 'Tech blogger passionate about React Native and mobile development',
@@ -27,6 +28,7 @@ export const mockUsers: User[] = [
     role: 'blogger',
     profileImage: 'https://randomuser.me/api/portraits/women/44.jpg',
     bio: 'Writing about UI/UX and design systems',
+    coverImage: 'https://picsum.photos/800/600',
     expertise: ['UI/UX', 'Design Systems', 'Figma'],
     languages: ['English', 'Hindi', 'Bengali'],
     location: {
@@ -43,10 +45,11 @@ export const mockUsers: User[] = [
     id: 'user3',
     name: 'Amit Sharma',
     email: 'amit@example.com',
+    coverImage: 'https://picsum.photos/800/600',
     role: 'blogger',
     profileImage: 'https://randomuser.me/api/portraits/men/75.jpg',
     bio: 'Full-stack developer exploring AI and web technologies',
-    expertise: ['Node.js', 'AI', 'Machine Learning'],
+    expertise: ['Node.js', 'AI', 'Business'],
     languages: ['English', 'Hindi'],
     location: {
       latitude: 28.7041,
@@ -118,7 +121,7 @@ export const mockBlogPosts: BlogPost[] = [
   {
     id: 'blog3',
     title: 'Machine Learning Basics for Web Developers',
-    content: `Machine learning is revolutionizing web development, opening new possibilities for creating intelligent and adaptive user experiences. This comprehensive guide bridges the gap between traditional web development and machine learning, making AI accessible to web developers.
+    content: `<p> Machine learning is revolutionizing web development, opening new possibilities for creating intelligent and adaptive user experiences. This comprehensive guide bridges the gap between traditional web development and machine learning, making AI accessible to web developers.
 
     Understanding the fundamentals of machine learning is crucial for any developer looking to integrate AI into their applications. We'll explore core concepts such as supervised learning, unsupervised learning, and reinforcement learning through practical examples relevant to web development.
 
@@ -128,7 +131,7 @@ export const mockBlogPosts: BlogPost[] = [
 
     Model optimization for web environments presents unique challenges. We'll discuss techniques for reducing model size, improving inference speed, and managing memory usage in browser-based applications. You'll learn how to balance model accuracy with performance requirements.
 
-    Finally, we'll explore best practices for integrating machine learning features into your web applications. From handling model loading and caching to implementing fallback mechanisms, you'll learn how to create robust and reliable AI-powered web applications.`,
+    Finally, we'll explore best practices for integrating machine learning features into your web applications. From handling model loading and caching to implementing fallback mechanisms, you'll learn how to create robust and reliable AI-powered web applications. </p>`,
     images: [
       'https://picsum.photos/800/600?random=6',
       'https://picsum.photos/800/600?random=7',

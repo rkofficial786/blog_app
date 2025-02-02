@@ -16,7 +16,7 @@ export const fetchBlogs = createAsyncThunk(
 
 export const createBlog = createAsyncThunk(
   `${blogApiEndpoints.createBlog}Post`,
-  async (payload) => {
+  async (payload:any) => {
     const { status, data } = await blogApi.createBlog(payload);
     return { status, data };
   }
