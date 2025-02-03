@@ -5,7 +5,7 @@ export const shouldGroupMessage = (current: Message, previous: Message | null) =
   if (!previous) return false;
   return (
     current.senderId === previous.senderId &&
-    new Date(current.timestamp).getTime() - new Date(previous.timestamp).getTime() < 120000
+    new Date(current.timestamp).getTime() - new Date(previous.timestamp).getTime() < 10
   );
 };
 

@@ -1,6 +1,7 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {userApiEndpoints} from '../../apis/authApi/config';
 import userApi from '../../apis/authApi';
+import { User } from '../../types/blogs';
 
 export const loginUser = createAsyncThunk(
   `${userApiEndpoints.login}Post`,

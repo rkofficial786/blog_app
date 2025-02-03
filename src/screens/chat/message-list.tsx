@@ -27,7 +27,7 @@ export const MessageList = ({ messages, currentUserId }: MessageListProps) => {
             message={item}
             isCurrentUser={isCurrentUser}
             isGrouped={isGrouped}
-            isLastInGroup={isLastInGroup}
+            isLastInGroup={true}
           />
           {showDateHeader && <DateHeader timestamp={item.timestamp} />}
         </>

@@ -40,8 +40,8 @@ export const MessageBubble = ({
           </Text>
           {isLastInGroup && (
             <Text
-              className={`text-[11px] mt-0.5 ${
-                isCurrentUser ? 'text-white/70' : 'text-text-tertiary'
+              className={`text-[11px]  mt-0.5 ${
+                isCurrentUser ? 'text-white/70 self-end' : 'text-text-tertiary'
               }`}>
               {formatTime(message.timestamp)}
             </Text>
