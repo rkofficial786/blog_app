@@ -26,3 +26,4 @@ export const getProfile = createAsyncThunk(
     return response.data;
   },
 );
+

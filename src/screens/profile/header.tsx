@@ -27,6 +27,9 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
     return count.toString();
   };
 
+  console.log(user,"usre hai");
+  
+
   return (
     <View className="bg-background-secondary">
       {/* Cover Image with Navigation Actions */}

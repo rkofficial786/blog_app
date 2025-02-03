@@ -6,6 +6,7 @@ import {HomeStackNavigator} from './stacks/HomeStack';
 import {ProfileStackNavigator} from './stacks/ProfileStack';
 import {MapsStackNavigator} from './stacks/MapStack';
 import {ChatsStackNavigator} from './stacks/ChatsStack';
+import {useSelector} from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 const {width} = Dimensions.get('window');
@@ -40,6 +41,7 @@ const TabBarIndicator = ({state, descriptor, navigation, tabWidth}: any) => {
 
 export const MainTabNavigator = () => {
   const tabWidth = width / 4; // 4 tabs
+  const {currentUser} = useSelector((state: any) => state.user);
 
   return (
     <Tab.Navigator
@@ -139,25 +141,31 @@ export const MainTabNavigator = () => {
           ),
         }}
       />
-      <Tab.Screen
-        name="ProfileStack"
-        component={ProfileStackNavigator}
-        options={{
-          tabBarLabel: 'Profile',
-          tabBarIcon: ({color, size, focused}) => (
-            <Animated.View
-              style={{
-                transform: [
-                  {
-                    scale: focused ? 1.2 : 1,
-                  },
-                ],
-              }}>
-              <MaterialCommunityIcons name="account" color={color} size={24} />
-            </Animated.View>
-          ),
-        }}
-      />
+      {/* {currentUser.role == 'blogger' && ( */}
+        <Tab.Screen
+          name="ProfileStack"
+          component={ProfileStackNavigator}
+          options={{
+            tabBarLabel: 'Profile',
+            tabBarIcon: ({color, size, focused}) => (
+              <Animated.View
+                style={{
+                  transform: [
+                    {
+                      scale: focused ? 1.2 : 1,
+                    },
+                  ],
+                }}>
+                <MaterialCommunityIcons
+                  name="account"
+                  color={color}
+                  size={24}
+                />
+              </Animated.View>
+            ),
+          }}
+        />
+      
     </Tab.Navigator>
   );
 };

@@ -3,15 +3,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {loginUser, registerUser, getProfile} from './actions';
 import {User} from '../../types/blogs';
 
-interface UserState {
-  currentUser: User | null;
-  token: string | null;
-  isLoading: boolean;
-  error: string | null;
-  profileData: User | null; // Added for profile data
-}
-
-const initialState: UserState = {
+const initialState: any = {
   currentUser: null,
   token: null,
   isLoading: false,

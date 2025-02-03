@@ -20,6 +20,9 @@ const BlogDetail = () => {
   const [loading, setLoading] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
 
+  console.log(blog,"blog");
+  
+
   useEffect(() => {
     loadBlogDetails();
   }, [blogId]);
@@ -89,7 +92,7 @@ const BlogDetail = () => {
           <HTMLContent content={blog.content} />
         </View>
 
-        <BlogImages images={blog.images} />
+        {/* <BlogImages images={blog.images} /> */}
 
         <BlogEngagement
           likes={blog.likes}

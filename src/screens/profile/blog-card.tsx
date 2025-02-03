@@ -8,7 +8,7 @@ interface CompactBlogCardProps {
   onPress: () => void;
 }
 
-const CompactBlogCard: React.FC<CompactBlogCardProps> = ({blog, onPress}) => {
+const BlogCard: React.FC<CompactBlogCardProps> = ({blog, onPress}) => {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', {
@@ -93,4 +93,4 @@ const CompactBlogCard: React.FC<CompactBlogCardProps> = ({blog, onPress}) => {
   );
 };
 
-export default CompactBlogCard;
+export default BlogCard;

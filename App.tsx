@@ -29,10 +29,7 @@ function App(): React.JSX.Element {
               style={{
                 flex: 1,
                 paddingTop: sizer.horizontalScale(60),
-                backgroundColor:
-                  theme == 'dark'
-                    ? Colors.dark.background.primary
-                    : Colors.light.background.primary,
+                backgroundColor: Colors.light.background.primary,
               }}>
               {/* <SocketProvider> */}
               <Navigation />

@@ -1,14 +1,12 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {AuthStackNavigator} from './stacks/AuthStack';
-import {DrawerNavigator} from './DrawerNavigator';
 import {MainTabNavigator} from './TabNavigator';
-import {View} from 'react-native';
-import Routes from '.';
 import {useSelector} from 'react-redux';
 import AuthorProfile from '../screens/profile';
 import CreateBlog from '../screens/create-blogs';
+import BlogDetail from '../screens/blog-details';
+import EditProfile from '../screens/profile/edit-profile';
 
 const RootStack = createNativeStackNavigator();
 
@@ -25,6 +23,8 @@ export const Navigation = () => {
 
       <RootStack.Screen name="Profile" component={AuthorProfile} />
       <RootStack.Screen name="CreateBlogs" component={CreateBlog} />
+      <RootStack.Screen name="BlogDetail" component={BlogDetail} />
+      <RootStack.Screen name="EditProfile" component={EditProfile} />
     </RootStack.Navigator>
   );
 };
