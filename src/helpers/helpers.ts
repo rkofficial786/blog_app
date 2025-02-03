@@ -1,12 +1,33 @@
-export const getBorderStyle = (isDarkMode: boolean, condition: any) => {
-  if (condition) {
-    return isDarkMode
-      ? 'border dark:border-dark-border-medium dark:bg-dark-background-secondary/50'
-      : 'border border-light-border-medium bg-light-background-tertiary';
-  } else if (!condition) {
-    return isDarkMode
-      ? 'border dark:border-dark-border-medium'
-      : 'border border-light-border-medium';
+
+
+
+export const formatTime = (timestamp: string) => {
+  return new Date(timestamp).toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+};
+
+
+export const formatMessageDate = (timestamp: string) => {
+  const messageDate = new Date(timestamp);
+  const today = new Date();
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
+  
+  // Reset hours for accurate comparison
+  messageDate.setHours(0, 0, 0, 0);
+  today.setHours(0, 0, 0, 0);
+  yesterday.setHours(0, 0, 0, 0);
+
+  if (messageDate.getTime() === today.getTime()) {
+    return 'Today';
+  } else if (messageDate.getTime() === yesterday.getTime()) {
+    return 'Yesterday';
   }
-  return '';
+  return messageDate.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 };

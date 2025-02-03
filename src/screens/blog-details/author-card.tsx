@@ -1,6 +1,5 @@
 import React from 'react';
 import {TouchableOpacity, View, Text, Pressable} from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Avatar from '../../components/avatar';
 import {User} from '../../types/blogs';
 import {useSelector} from 'react-redux';
@@ -54,7 +53,7 @@ const AuthorCard: React.FC<AuthorCardProps> = ({
           </View>
         </View>
 
-        {/* Follow Button */}
+       
         {currentUser.id !== author.id && (
           <Pressable
             onPress={onFollowPress}

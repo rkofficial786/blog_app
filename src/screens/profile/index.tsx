@@ -23,20 +23,13 @@ const ProfileContainer = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
-
   const profileId = authorId || currentUser?.id;
   const isOwnProfile = currentUser?.id === profileId;
   const author = authorBlogs[0]?.author;
 
-  // Determine if we're viewing a blogger's profile
-  const isViewingBloggerProfile = authorId ? author?.role === 'blogger' : currentUser?.role === 'blogger';
-  
-  // Should show blogger view if:
-  // 1. We have an authorId and that author is a blogger
-  // 2. No authorId (viewing own profile) and current user is a blogger
   const shouldShowBloggerView = Boolean(
-    (authorId && author?.role === 'blogger') || 
-    (!authorId && currentUser?.role === 'blogger')
+    (authorId && author?.role === 'blogger') ||
+      (!authorId && currentUser?.role === 'blogger'),
   );
 
   useFocusEffect(
@@ -160,7 +153,6 @@ const ProfileContainer = () => {
     );
   }
 
-  // If viewing a blogger's profile (either through authorId or own profile), show blogger view
   if (shouldShowBloggerView) {
     return (
       <AuthorProfile
@@ -178,7 +170,6 @@ const ProfileContainer = () => {
       />
     );
   }
-
 
   return (
     <UserProfile

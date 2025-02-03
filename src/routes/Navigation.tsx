@@ -7,6 +7,7 @@ import AuthorProfile from '../screens/profile';
 import CreateBlog from '../screens/create-blogs';
 import BlogDetail from '../screens/blog-details';
 import EditProfile from '../screens/profile/edit-profile';
+import {ChatScreen} from '../screens/chat';
 
 const RootStack = createNativeStackNavigator();
 
@@ -25,6 +26,7 @@ export const Navigation = () => {
       <RootStack.Screen name="CreateBlogs" component={CreateBlog} />
       <RootStack.Screen name="BlogDetail" component={BlogDetail} />
       <RootStack.Screen name="EditProfile" component={EditProfile} />
+      <RootStack.Screen name="Chat" component={ChatScreen} />
     </RootStack.Navigator>
   );
 };

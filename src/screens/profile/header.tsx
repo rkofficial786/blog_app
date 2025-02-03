@@ -3,6 +3,8 @@ import {View, Text, ImageBackground, Pressable} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Avatar from '../../components/avatar';
 import {User} from '../../types/blogs';
+import {ChatButton} from './chat-button';
+import {useSelector} from 'react-redux';
 
 interface ProfileHeaderProps {
   user: User;
@@ -26,9 +28,8 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
     if (count >= 1000) return `${(count / 1000).toFixed(1)}K`;
     return count.toString();
   };
-
-  console.log(user,"usre hai");
-  
+  const {currentUser} = useSelector((state: any) => state.user);
+  console.log(user, 'usre hai');
 
   return (
     <View className="bg-background-secondary">
@@ -38,7 +39,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
         className="h-32 justify-between p-4"
         resizeMode="cover">
         <View className="absolute inset-0 bg-black/30" />
-        
+
         {/* Action Buttons */}
         <View className="flex-row justify-end items-center z-10">
           {isOwnProfile ? (
@@ -46,7 +47,11 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
               <Pressable
                 onPress={onEditPress}
                 className="bg-background-secondary/90 p-2 rounded-full">
-                <MaterialCommunityIcons name="pencil" size={20} color="#64748B" />
+                <MaterialCommunityIcons
+                  name="pencil"
+                  size={20}
+                  color="#64748B"
+                />
               </Pressable>
               <Pressable
                 onPress={onCreateBlogPress}
@@ -55,27 +60,30 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
               </Pressable>
             </View>
           ) : (
-            <Pressable
-              onPress={onFollowPress}
-              className={`px-4 py-1.5 rounded-full ${
-                isFollowing 
-                  ? 'bg-background-secondary/90' 
-                  : 'bg-accent-primary'
-              }`}>
-              <View className="flex-row items-center">
-                <MaterialCommunityIcons
-                  name={isFollowing ? 'account-check' : 'account-plus'}
-                  size={18}
-                  color={isFollowing ? '#64748B' : '#FFFFFF'}
-                />
-                <Text
-                  className={`ml-1 font-medium ${
-                    isFollowing ? 'text-text-primary' : 'text-white'
-                  }`}>
-                  {isFollowing ? 'Following' : 'Follow'}
-                </Text>
-              </View>
-            </Pressable>
+            <View className="flex-row items-center gap-2">
+              <ChatButton authorId={user.id} currentUserId={currentUser?.id} />
+              <Pressable
+                onPress={onFollowPress}
+                className={`px-4 py-1.5 rounded-full ${
+                  isFollowing
+                    ? 'bg-background-secondary/90'
+                    : 'bg-accent-primary'
+                }`}>
+                <View className="flex-row items-center">
+                  <MaterialCommunityIcons
+                    name={isFollowing ? 'account-check' : 'account-plus'}
+                    size={18}
+                    color={isFollowing ? '#64748B' : '#FFFFFF'}
+                  />
+                  <Text
+                    className={`ml-1 font-medium ${
+                      isFollowing ? 'text-text-primary' : 'text-white'
+                    }`}>
+                    {isFollowing ? 'Following' : 'Follow'}
+                  </Text>
+                </View>
+              </Pressable>
+            </View>
           )}
         </View>
       </ImageBackground>
@@ -89,7 +97,9 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
             {user.name}
           </Text>
           {user.bio && (
-            <Text className="text-text-secondary text-sm mt-1" numberOfLines={2}>
+            <Text
+              className="text-text-secondary text-sm mt-1"
+              numberOfLines={2}>
               {user.bio}
             </Text>
           )}
@@ -107,7 +117,9 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
             <Text className="text-text-primary font-bold text-base">
               {formatCount(user.followersCount)}
             </Text>
-            <Text className="text-text-secondary text-xs mt-0.5">Followers</Text>
+            <Text className="text-text-secondary text-xs mt-0.5">
+              Followers
+            </Text>
           </Pressable>
           <Pressable className="flex-1 py-3 items-center">
             <Text className="text-text-primary font-bold text-base">
@@ -120,7 +132,9 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
         {/* Expertise */}
         {user.expertise && user.expertise.length > 0 && (
           <View className="mt-3">
-            <Text className="text-text-secondary text-xs font-semibold mb-2">Expertise</Text>
+            <Text className="text-text-secondary text-xs font-semibold mb-2">
+              Expertise
+            </Text>
             <View className="flex-row flex-wrap gap-1">
               {user.expertise.map((exp, index) => (
                 <View

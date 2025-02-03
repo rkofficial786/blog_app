@@ -8,17 +8,19 @@ import UserSlice from './user';
 import themeSlice from './theme';
 
 import BlogSlice from './blog';
+import ChatSlice from './chat';
 
 const rootReducer = combineReducers({
   user: UserSlice,
   theme: themeSlice,
   blogs: BlogSlice,
+  chat: ChatSlice,
 });
 
 const persistConfig = {
   key: 'routine',
   storage: AsyncStorage,
-  whiteList: ['user', 'blog'],
+  whiteList: ['user', 'blog' ,"chat"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
