@@ -3,8 +3,8 @@ import {View, Text} from 'react-native';
 import {useColorScheme} from 'nativewind';
 
 interface DividerProps {
-  text?: string; // Optional text to display in the middle of the divider
-  color?: string; // Optional custom color for the divider
+  text?: string; 
+  color?: string; 
   thickness?: number;
   margin?: string;
 }

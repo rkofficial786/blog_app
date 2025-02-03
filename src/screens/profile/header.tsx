@@ -29,18 +29,15 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
     return count.toString();
   };
   const {currentUser} = useSelector((state: any) => state.user);
-  console.log(user, 'usre hai');
 
   return (
     <View className="bg-background-secondary">
-      {/* Cover Image with Navigation Actions */}
       <ImageBackground
         source={{uri: user.coverImage || '/api/placeholder/400/150'}}
         className="h-32 justify-between p-4"
         resizeMode="cover">
         <View className="absolute inset-0 bg-black/30" />
 
-        {/* Action Buttons */}
         <View className="flex-row justify-end items-center z-10">
           {isOwnProfile ? (
             <View className="flex-row gap-2">
@@ -111,7 +108,9 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
             <Text className="text-text-primary font-bold text-base">
               {formatCount(user.postCount)}
             </Text>
-            <Text className="text-text-secondary text-xs mt-0.5">Posts</Text>
+            <Text className="text-text-secondary text-xs mt-0.5">
+              {user.postCount == 1 ? 'Post' : 'Posts'}
+            </Text>
           </Pressable>
           <Pressable className="flex-1 py-3 items-center border-x border-border-light">
             <Text className="text-text-primary font-bold text-base">

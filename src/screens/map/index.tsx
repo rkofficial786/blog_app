@@ -13,7 +13,7 @@ const Map = () => {
       if (payload.data.success) {
         setBloggers(payload.data.data);
       }
-      console.log(payload, 'payload is here');
+      
     } catch (error) {
       console.log(error);
     }

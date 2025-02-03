@@ -91,7 +91,7 @@ export const ChatListScreen = () => {
   const fetchAllChatApi = async () => {
     try {
       const {payload} = await dispatch(fetchAllChats(currentUser.id));
-      console.log(payload, 'payload chat');
+      
       setChats(payload);
     } catch (error) {
       console.log(error, 'error');
@@ -124,9 +124,9 @@ export const ChatListScreen = () => {
       <FlatList
         data={chats}
         renderItem={({item}) => (
-          <ChatListItem chat={item} onPress={() => handleChatPress(item)} />
+          <ChatListItem  chat={item} onPress={() => handleChatPress(item)} />
         )}
-        keyExtractor={(item: any) => item.partnerId}
+        keyExtractor={(item: any,) => item.partnerId}
         refreshControl={
           <RefreshControl refreshing={loading} onRefresh={handleRefresh} />
         }

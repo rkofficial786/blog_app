@@ -4,7 +4,7 @@ import React from 'react'
 const EditProfile = () => {
   return (
     <View>
-      <Text>Not working</Text>
+      <Text className='text-red-700'>Not Implemented</Text>
     </View>
   )
 }

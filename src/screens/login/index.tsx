@@ -7,7 +7,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {loginUser} from '../../store/user';
 import TextInput from '../../components/input';
 import Button from '../../components/button';
-import { useToast } from '../../hooks/useToast';
+import {useToast} from '../../hooks/useToast';
 
 const Login = () => {
   const dispatch = useDispatch<any>();
@@ -23,16 +23,13 @@ const Login = () => {
 
   const handleLogin = async () => {
     if (!formData.email || !formData.password) {
-    
-      showError('Error', 'Please fill in all fields')
+      showError('Error', 'Please fill in all fields');
       return;
     }
 
     try {
       setLoading(true);
       const response = await dispatch(loginUser(formData));
-
-      console.log(response, 'login payload');
     } catch (error) {
       Alert.alert(
         'Login Failed',

@@ -20,6 +20,7 @@ import Avatar from '../../components/avatar';
 import {MessageList} from './message-list';
 import {ChatInput} from './chat-input';
 import {ChatHeader} from './chat-header';
+import { getProfile } from '../../store/user';
 
 export const ChatScreen = () => {
   const route = useRoute<any>();
@@ -51,12 +52,16 @@ export const ChatScreen = () => {
   useEffect(() => {
     const fetchChatPartner = async () => {
       try {
-        const {payload} = await dispatch(getBlogsByAuthor(authorId));
-        if (payload.data.success) {
-          setChatPartner(payload.data.data[0].author);
+        const {payload} = await dispatch(getProfile(authorId));
+
+
+        console.log(payload,"paylkoad profile");
+        
+        if (payload.success) {
+          setChatPartner(payload.data);
         }
       } catch (error) {
-        console.error('Error fetching chat partner:', error);
+        console.error('Error fetching chat partnerc:', error);
       } finally {
         setLoading(false);
       }
@@ -73,7 +78,7 @@ export const ChatScreen = () => {
         );
         setMessages(payload.messages);
       } catch (error) {
-        console.error('Error fetching messages:', error);
+        console.error('Error fetching messagses:', error);
       }
     };
 

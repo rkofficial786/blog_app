@@ -20,7 +20,7 @@ const BlogDetail = () => {
   const [loading, setLoading] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
 
-  console.log(blog,"blog");
+  
   
 
   useEffect(() => {

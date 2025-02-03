@@ -1,21 +1,36 @@
+// @ts-nocheck
+
 import {mockDataStore} from '../../data/mockData';
 
 const userApi = {
   async login({email, password}) {
     const user = mockDataStore.users.find(u => u.email === email);
 
+    const userPostCount = mockDataStore.blogs.filter(
+      blog => blog.authorId === user.id,
+    ).length;
+
+    const totalLikes = mockDataStore.blogs
+      .filter(blog => blog.authorId === user.id)
+      .reduce((total, blog) => total + (blog.likes || 0), 0);
+
+    const enhancedUser = {
+      ...user,
+      postCount: userPostCount,
+      totalLikes: totalLikes,
+    };
+
     return {
       status: 200,
       data: {
         success: true,
         data: {
-          user,
+          user: enhancedUser,
           token: `mock-token-${Date.now()}`,
         },
       },
     };
   },
-
   async register(userData) {
     const newUser = {
       id: `user-${Date.now()}`,

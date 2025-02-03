@@ -13,10 +13,8 @@ import Colors from './src/constants/colors';
 import {NavigationContainer} from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 import {toastConfig} from './src/utils/toast-config';
-import {SocketProvider} from './src/utils/socket-provider';
 
 function App(): React.JSX.Element {
-  const {colorScheme: theme} = useColorScheme();
   colorScheme?.set('light');
 
   return (
@@ -31,9 +29,7 @@ function App(): React.JSX.Element {
                 paddingTop: sizer.horizontalScale(60),
                 backgroundColor: Colors.light.background.primary,
               }}>
-              {/* <SocketProvider> */}
               <Navigation />
-              {/* </SocketProvider> */}
               <Toast config={toastConfig} position="top" />
             </SafeAreaView>
           </GestureHandlerRootView>

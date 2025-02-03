@@ -19,11 +19,7 @@ const Home = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const {blogs:allBlogs} =useSelector((state:any)=>state.blogs)
-
-
-  console.log(allBlogs,"all bl;ogs");
-  
+  const {blogs: allBlogs} = useSelector((state: any) => state.blogs);
 
   const loadBlogs = useCallback(
     async (filters: {
@@ -46,12 +42,10 @@ const Home = () => {
     [dispatch, isLoading],
   );
 
-  // Handle initial load
   useEffect(() => {
     loadBlogs({});
   }, []);
 
-  // Handle filter changes
   useEffect(() => {
     const filters = {
       search: searchQuery,

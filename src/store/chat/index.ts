@@ -1,5 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {fetchAllChats, fetchChatMessages, sendChatMessage} from './actions';
+import {User} from '../../types/blogs';
 
 const initialState: any = {
   chats: [],
@@ -28,13 +29,7 @@ const ChatSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchChatMessages.fulfilled, (state, action) => {
-        const {messages, partner, partnerId} = action.payload;
-        state.activeChats[partnerId] = {
-          messages,
-          partner,
-          unreadCount: 0,
-        };
+      .addCase(fetchChatMessages.fulfilled, (state, action: any) => {
         state.loading = false;
       })
       .addCase(fetchChatMessages.rejected, (state, action) => {
@@ -48,15 +43,6 @@ const ChatSlice = createSlice({
       })
       .addCase(sendChatMessage.fulfilled, (state, action) => {
         const {message, partnerId} = action.payload;
-        if (state.activeChats[partnerId]) {
-          state.activeChats[partnerId].messages.unshift(message);
-        } else {
-          state.activeChats[partnerId] = {
-            messages: [message],
-            partner: {} as User,
-            unreadCount: 0,
-          };
-        }
       })
       .addCase(sendChatMessage.rejected, (state, action) => {
         state.error = action.payload as string;
@@ -68,8 +54,6 @@ const ChatSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchAllChats.fulfilled, (state, action) => {
-        console.log(action, 'action for all cahts');
-
         state.loading = false;
 
         state.chats = action.payload;

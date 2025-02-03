@@ -41,7 +41,7 @@ const Register = () => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
 
-  // Validation functions
+
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -70,7 +70,6 @@ const Register = () => {
     const newErrors: FormErrors = {};
     let isValid = true;
 
-    // Validate each field
     Object.keys(formData).forEach(key => {
       if (key === 'role') return;
       const error = validateField(key as keyof FormErrors, formData[key as keyof typeof formData]);

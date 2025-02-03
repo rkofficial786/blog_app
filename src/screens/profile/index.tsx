@@ -27,6 +27,8 @@ const ProfileContainer = () => {
   const isOwnProfile = currentUser?.id === profileId;
   const author = authorBlogs[0]?.author;
 
+  console.log(author, 'author');
+
   const shouldShowBloggerView = Boolean(
     (authorId && author?.role === 'blogger') ||
       (!authorId && currentUser?.role === 'blogger'),
@@ -156,7 +158,7 @@ const ProfileContainer = () => {
   if (shouldShowBloggerView) {
     return (
       <AuthorProfile
-        author={authorId ? author : currentUser}
+        author={authorId ? author : author?.id ? author : currentUser}
         authorBlogs={authorBlogs}
         isOwnProfile={isOwnProfile}
         isFollowing={isFollowing}

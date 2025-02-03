@@ -22,7 +22,7 @@ export const ChatHeader = ({chatPartner}: ChatHeaderProps) => {
         <Icon name="arrow-left" size={24} color="#64748B" />
       </TouchableOpacity>
 
-      <Avatar source={chatPartner.profileImage} />
+      <Avatar source={chatPartner.profileImage} name={chatPartner.name}/>
 
       <View className="flex-1 ml-4">
         <Text className="font-semibold text-text-primary text-base">

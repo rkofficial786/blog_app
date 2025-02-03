@@ -1,13 +1,13 @@
+// @ts-nocheck
+
 import {mockDataStore} from '../../data/mockData';
 import {BlogPost, BlogWithAuthor, User} from '../../types/blogs';
 import blogApiEndpoints from './config';
 
-// Helper function to get post count for an author
 const getAuthorPostCount = (authorId: string): number => {
   return mockDataStore.blogs.filter(blog => blog.authorId === authorId).length;
 };
 
-// Helper function to get total likes for an author
 const getAuthorTotalLikes = (authorId: string): number => {
   return mockDataStore.blogs
     .filter(blog => blog.authorId === authorId)
@@ -32,7 +32,6 @@ const enrichBlogWithAuthor = (blog: BlogPost): BlogWithAuthor => {
 
 const blogApi = {
   async getBlogs(filters = {}) {
-    // Simulate API response
     let filteredBlogs = [...mockDataStore.blogs];
 
     if (filters.search) {
@@ -41,7 +40,6 @@ const blogApi = {
       );
     }
 
-    // Add expertise filter
     if (filters.expertise) {
       filteredBlogs = filteredBlogs.filter(blog => {
         const author = mockDataStore.users.find(
@@ -51,14 +49,12 @@ const blogApi = {
       });
     }
 
-    // Add language filter
     if (filters.language) {
       filteredBlogs = filteredBlogs.filter(
         blog => blog.language === filters.language,
       );
     }
 
-    // Enrich blogs with author details
     const enrichedBlogs = filteredBlogs.map(blog => enrichBlogWithAuthor(blog));
 
     return {
@@ -94,9 +90,8 @@ const blogApi = {
   },
 
   async createBlog(payload: any) {
+  
 
-    console.log(payload,"payload hai create ka");
-    
     const newBlog: BlogPost = {
       id: `blog-${Date.now()}`,
       title: payload.title,
@@ -134,7 +129,6 @@ const blogApi = {
       );
     }
 
-    // Enrich bloggers with post count and total likes
     const enrichedBloggers = bloggers.map(blogger => ({
       ...blogger,
       postCount: getAuthorPostCount(blogger.id),

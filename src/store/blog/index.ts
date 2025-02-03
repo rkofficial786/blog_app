@@ -1,4 +1,4 @@
-// src/store/blog/index.ts
+
 import {createSlice} from '@reduxjs/toolkit';
 import {
   fetchBlogs,
@@ -29,7 +29,7 @@ export const BlogSlice = createSlice({
       .addCase(fetchBlogs.fulfilled, (state, action) => {
         const {status, data} = action.payload;
 
-        console.log(action, 'action');
+     
 
         if (status === 200 && data.success) {
           state.blogs = data.data;

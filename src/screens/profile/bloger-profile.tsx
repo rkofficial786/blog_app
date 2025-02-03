@@ -40,7 +40,7 @@ const AuthorProfile = ({
   onLogout,
   onBlogPress,
 }: AuthorProfileProps) => {
-  console.log(author, 'authopur data');
+
 
   return (
     <View className="flex-1 bg-background-primary">

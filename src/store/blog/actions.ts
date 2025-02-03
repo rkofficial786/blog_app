@@ -1,4 +1,4 @@
-// src/store/blog/actions.ts
+
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import blogApiEndpoints from '../../apis/blogApi/config';
 import blogApi from '../../apis/blogApi';
@@ -7,7 +7,7 @@ import blogApi from '../../apis/blogApi';
 export const fetchBlogs = createAsyncThunk(
   `${blogApiEndpoints.getBlogs}Get`,
   async (filters:any = {}) => {
-    console.log(filters,"filters");
+   
     
     const { status, data } = await blogApi.getBlogs(filters);
     return { status, data };
