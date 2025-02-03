@@ -18,7 +18,7 @@ Direct APK Link : https://drive.google.com/file/d/1i8tV52RjnuEbvmBtWQY6AmGE2MkYJ
 - React Native
 - TypeScript
 - React Navigation (Stack + Tab)
-- NativeWind for styling
+- NativeWind for styling(it saves time)
 - React Native Vector Icons
 - React Native Maps
 - Local state management
